@@ -41,14 +41,11 @@ class MainViewModel(application: Application) : AndroidViewModel(application),
     val targetVolume: LiveData<Int> = _targetVolume
 
     private val sharedPref = getApplication<Application>()
-            .getSharedPreferences("MainActivity", Context.MODE_PRIVATE)
+        .getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE)
     private val settings = PreferenceManager.getDefaultSharedPreferences(application)
 
     init {
-        val today = LocalDate.now()
-        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-        val formattedDate = today.format(formatter)
-        val record = sharedPref.getString(formattedDate, "").orEmpty()
+        val record = sharedPref.getString(todayString(), "").orEmpty()
         if (record.isNotBlank()) {
             _todayVolume.value = record.split(",").map {
                 it.toInt()
@@ -68,11 +65,18 @@ class MainViewModel(application: Application) : AndroidViewModel(application),
         _todayVolume.value = newVolume
 
         sharedPref.edit {
+            putString(todayString(), newVolume.joinToString(","))
+        }
+    }
+
+    companion object {
+        private fun todayString(): String {
             val today = LocalDate.now()
             val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-            val formattedDate = today.format(formatter)
-            putString(formattedDate, newVolume.joinToString(","))
+            return today.format(formatter)
         }
+
+        private const val PREF_KEY = "MainActivity"
     }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String?) {
