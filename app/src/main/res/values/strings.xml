@@ -1,0 +1,33 @@
+<!--
+  ~  Copyright (c) 2024 danielzhang130
+  ~
+  ~  This program is free software: you can redistribute it and/or modify
+  ~  it under the terms of the GNU General Public License as published by
+  ~  the Free Software Foundation, either version 3 of the License, or
+  ~  (at your option) any later version.
+  ~
+  ~  This program is distributed in the hope that it will be useful,
+  ~  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~  GNU General Public License for more details.
+  ~
+  ~  You should have received a copy of the GNU General Public License
+  ~  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <string name="app_name">Water Reminder</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label" />
+    <string name="second_fragment_label">Settings</string>
+    <string name="history_fragment_label">History</string>
+    <string name="today_total">Today %dmL/%dmL</string>
+    <string name="volume">%dmL</string>
+    <string name="other">OTHER</string>
+    <string name="previous">Previous</string>
+    <string name="target_volume">Daily water drinking target</string>
+    <string name="day_start">Water reminder start time</string>
+    <string name="day_end">Water reminder end time</string>
+    <string name="action_history">History</string>
+</resources>

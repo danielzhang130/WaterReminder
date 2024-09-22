@@ -1,0 +1,27 @@
+<!--
+  ~  Copyright (c) 2024 danielzhang130
+  ~
+  ~  This program is free software: you can redistribute it and/or modify
+  ~  it under the terms of the GNU General Public License as published by
+  ~  the Free Software Foundation, either version 3 of the License, or
+  ~  (at your option) any later version.
+  ~
+  ~  This program is distributed in the hope that it will be useful,
+  ~  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~  GNU General Public License for more details.
+  ~
+  ~  You should have received a copy of the GNU General Public License
+  ~  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="960"
+    android:viewportHeight="960"
+    android:tint="@color/blue">
+  <path
+      android:pathData="M262,880q-23,0 -40.5,-15T202,827l-82,-747h720l-82,747q-2,23 -19.5,38T698,880L262,880ZM214,380 L261.96,820L698,820l48,-440L214,380ZM207,320h546l20,-180L187,140l20,180ZM479.83,707Q460,707 446,693.47T432,661q0,-24 12.5,-53t35.5,-59q23,30 35.5,59t12.5,53q0,18.94 -14.17,32.47 -14.16,13.53 -34,13.53ZM480,767q45.47,0 76.74,-31Q588,705 588,661q0,-47 -28.5,-100T480,460q-51,48 -79.5,101T372,661q0,44 31.26,75 31.27,31 76.74,31ZM214,820h532,-532Z"
+      android:fillColor="#000000"/>
+</vector>
