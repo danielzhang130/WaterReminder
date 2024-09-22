@@ -53,10 +53,15 @@ class MainViewModel(application: Application) : AndroidViewModel(application),
         }
 
         _history.value = sharedPref.all.map {
-            it.key to it.value.toString().split(",").map { it.toInt() }
+            val date = LocalDate.parse(it.key, DATE_FORMAT)
+            Triple(date, it.key, it.value.toString().split(",").map { it.toInt() })
         }
+            .sortedByDescending { it.first }
+            .map {
+                it.second to it.third
+            }
 
-        _targetVolume.value = settings.getString("target_volume", "3000")?.toInt() ?: 3000
+        _targetVolume.value = (settings.getString("target_volume", "3000") as String).toInt()
         settings.registerOnSharedPreferenceChangeListener(this)
     }
 
@@ -72,10 +77,10 @@ class MainViewModel(application: Application) : AndroidViewModel(application),
     companion object {
         private fun todayString(): String {
             val today = LocalDate.now()
-            val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-            return today.format(formatter)
+            return today.format(DATE_FORMAT)
         }
 
+        private val DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd")
         private const val PREF_KEY = "MainActivity"
     }
 

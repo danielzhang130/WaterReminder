@@ -44,7 +44,7 @@ class AddVolumeAdapter(
         else AddVolumeVH.AddVolumeNormalVH.TYPE
     }
 
-    override fun getItemCount() = list.size + 1
+    override fun getItemCount() = list.size/* + 1*/
 
     override fun onBindViewHolder(holder: AddVolumeVH, position: Int) {
         val volume = if (position >= list.size) -1 else list[position]
