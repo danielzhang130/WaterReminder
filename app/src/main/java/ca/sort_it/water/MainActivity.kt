@@ -21,10 +21,16 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.method.LinkMovementMethod
+import android.text.util.Linkify
 import android.view.MenuItem
+import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.text.util.LinkifyCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -88,6 +94,19 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.action_history -> {
                 navController.navigate(R.id.action_MainFragment_to_HistoryFragment)
+                true
+            }
+            R.id.action_about -> {
+                AlertDialog.Builder(this)
+                    .setTitle(R.string.about)
+                    .setMessage(
+                        SpannableString(getString(R.string.about_text, BuildConfig.VERSION_NAME))
+                        .apply { LinkifyCompat.addLinks(this, Linkify.WEB_URLS) })
+                    .setNeutralButton(android.R.string.ok) { dialog, _ -> dialog.dismiss() }
+                    .show()
+                    .apply {
+                        findViewById<TextView>(android.R.id.message)?.movementMethod = LinkMovementMethod.getInstance()
+                    }
                 true
             }
             else -> super.onOptionsItemSelected(item)
