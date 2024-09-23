@@ -27,10 +27,6 @@ class TodayVolumeAdapter(private val layoutInflater: LayoutInflater) :
     RecyclerView.Adapter<TodayVolumeAdapter.TodayVolumeVH>() {
 
     var todayVolume: List<Int> = emptyList()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodayVolumeVH {
         return TodayVolumeVH(
@@ -42,6 +38,12 @@ class TodayVolumeAdapter(private val layoutInflater: LayoutInflater) :
 
     override fun onBindViewHolder(holder: TodayVolumeVH, position: Int) {
         holder.bind(todayVolume[position])
+    }
+
+    fun onEvent(event: MainViewModel.Event) {
+        when (event) {
+            MainViewModel.Event.ITEM_ADDED -> notifyItemInserted(todayVolume.last())
+        }
     }
 
     class TodayVolumeVH(itemView: View) : RecyclerView.ViewHolder(itemView) {

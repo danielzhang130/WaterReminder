@@ -44,6 +44,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application),
         .getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE)
     private val settings = PreferenceManager.getDefaultSharedPreferences(application)
 
+    var event: Event = Event.ITEM_ADDED
+        private set
+
     init {
         val record = sharedPref.getString(todayString(), "").orEmpty()
         if (record.isNotBlank()) {
@@ -68,6 +71,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application),
     fun addWater(volume: Int) {
         val newVolume = _todayVolume.value.orEmpty() + volume
         _todayVolume.value = newVolume
+        event = Event.ITEM_ADDED
 
         sharedPref.edit {
             putString(todayString(), newVolume.joinToString(","))
@@ -82,6 +86,10 @@ class MainViewModel(application: Application) : AndroidViewModel(application),
 
         private val DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd")
         private const val PREF_KEY = "MainActivity"
+    }
+
+    enum class Event {
+        ITEM_ADDED
     }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String?) {

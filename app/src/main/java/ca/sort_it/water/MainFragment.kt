@@ -73,6 +73,7 @@ class MainFragment : Fragment() {
             binding.todayText.text =
                 getString(R.string.today_total, it.sum(), viewModel.targetVolume.value)
             todayVolumeAdapter.todayVolume = it
+            todayVolumeAdapter.onEvent(viewModel.event)
         }
 
         viewModel.targetVolume.observe(viewLifecycleOwner) {
